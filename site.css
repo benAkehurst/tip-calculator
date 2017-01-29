@@ -1,0 +1,44 @@
+#tipContainer {
+	border: 1px solid black;
+	border-radius: 15px;
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+	font-size: 5.9vw;
+	margin-bottom: 10px;
+}
+
+.divInput > label, input {
+	font-size: 3.9vw;
+}
+
+.divRadioButtons {
+	margin-top: 5px;
+	text-align: center;
+}
+
+.divRadioButtons > label {
+	font-size: 2.5vw;
+}
+
+.divButton {
+	margin-top: 10px;
+}
+
+.divAnswerSpan {
+	margin-top: 25px;
+}
+
+div > span {
+	font-size: 3.9vw;
+}
+
+
+
+@media only screen and (max-width: 320px) {
+
+   body { font-size: 2.5em; }
+
+}
