@@ -1,30 +1,37 @@
-var buttonCalcTip = document.getElementById('buttonCalcTip');
-buttonCalcTip.addEventListener("click",function(){
+const buttonCalcTip = document.querySelector('#buttonCalcTip');
+const finalBill = document.querySelector('#finalBill');
+const ok = document.querySelector('#radioOK');
+const great = document.querySelector('#radioGreat');
+const amazing = document.querySelector('#radioAmazing');
+const spanTip = document.querySelector('#spanTip');
 
-	var finalBill = document.getElementById('finalBill').value;
-	finalBill = parseInt(finalBill);
-
-	var tipCalculate = calculateTip(finalBill);
-
-	var spanTip = document.getElementById('spanTip');
-	spanTip.innerHTML = tipCalculate;
-
-
+finalBill.addEventListener('input', () => {
+  buttonCalcTip.disabled = false;
+  ok.disabled = false;
+  great.disabled = false;
+  amazing.disabled = false;
 });
 
-function calculateTip(num){
+buttonCalcTip.addEventListener('click', () => {
+  if (finalBill.value === null || undefined) {
+    return;
+  }
+  const tipCalculate = calculateTip(parseInt(finalBill.value));
+  spanTip.innerHTML = tipCalculate;
+});
 
-	var ok = document.getElementById('radioOK')
-	var great = document.getElementById('radioGreat');
-	var amazing = document.getElementById('radioAmazing');
+function calculateTip(num) {
+  if (ok.checked) {
+    return calculateTipAmount(num, 0.12);
+  } else if (great.checked) {
+    return calculateTipAmount(num, 0.15);
+  } else if (amazing.checked) {
+    return calculateTipAmount(num, 0.17);
+  }
+}
 
-	if(ok.checked) {
-  		return "Bill: " + num + "\nTip: " + parseInt((num * 0.12)) + "\nTotal: " + parseInt((num + (num * 0.12)));
-	}
-	else if(great.checked) {
-  		return "Bill: " + num + "\nTip: " + parseInt((num * 0.15)) + "\nTotal: " + parseInt((num + (num * 0.15)));
-	}
-	else if(amazing.checked){
-		return "Bill: " + num + "\nTip: " + parseInt((num * 0.17)) + "\nTotal: " + parseInt((num + (num * 0.17)));
-	}
+function calculateTipAmount(number, serviceLevel) {
+  let tipAmount = parseInt(number * serviceLevel);
+  let totalBill = parseInt(number + tipAmount);
+  return `Bill: ${number}, Tip: ${tipAmount}, Total Bills: ${totalBill}`;
 }
